@@ -1,0 +1,85 @@
+<div class="flex-grow-1">
+  <p-table
+    #table
+    [value]="persons"
+    [rows]="50"
+    [sortField]="'name'"
+    [sortOrder]="1"
+    [customSort]="true"
+    [scrollable]="true"
+    columnResizeMode="expand"
+    scrollHeight="flex"
+    [virtualScroll]="true"
+    [virtualScrollItemSize]="virtualScrollItemSize"
+    [virtualScrollOptions]="{ showLoader: false, showSpacer: false }"
+    [virtualScrollDelay]="0"
+    [resetPageOnSort]="false"
+    [lazy]="true"
+    [rowHover]="true"
+    selectionMode="single"
+    [(selection)]="selection"
+    (onLazyLoad)="handleLazyLoad($event)"
+    dataKey="id"
+    [lazyLoadOnInit]="false"
+    [tableStyle]="{ 'table-layout': 'fixed' }"
+  >
+    <ng-template pTemplate="header">
+      <tr class="data-row-header text-primary">
+        <th
+          scope="col"
+          class="data-cell-header white-space-nowrap text-overflow-ellipsis overflow-hidden"
+        >
+          Id
+        </th>
+        <th
+          scope="col"
+          class="data-cell-header white-space-nowrap text-overflow-ellipsis overflow-hidden"
+        >
+          Age
+        </th>
+        <th
+          scope="col"
+          class="data-cell-header white-space-nowrap text-overflow-ellipsis overflow-hidden"
+        >
+          Name
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-person let-rowIndex="rowIndex">
+      <tr
+        class="data-row cursor-pointer"
+        tabindex="0"
+        role="button"
+        [pSelectableRow]="person"
+        [pSelectableRowIndex]="rowIndex"
+      >
+        <td
+          class="data-cell white-space-nowrap text-overflow-ellipsis overflow-hidden"
+        >
+          {{ person.id }}
+        </td>
+        <td
+          class="data-cell white-space-nowrap text-overflow-ellipsis overflow-hidden"
+        >
+          {{ person.age }}
+        </td>
+        <td
+          class="data-cell white-space-nowrap text-overflow-ellipsis overflow-hidden"
+        >
+          {{ person.name }}
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="loadingbody">
+      <tr class="data-row" [style.height.px]="virtualScrollItemSize">
+        @for (i of [].constructor(3); track $index) {
+          <td class="data-cell">
+            <p-skeleton [ngStyle]="{ width: '100%' }" />
+          </td>
+        }
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
