@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TableLazyLoadEvent, TableModule } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
-import { AsyncPipe, JsonPipe, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 
 interface Person {
   id: string;
@@ -12,7 +12,7 @@ interface Person {
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [TableModule, SkeletonModule, NgStyle, AsyncPipe, JsonPipe],
+  imports: [TableModule, SkeletonModule, NgStyle],
   templateUrl: './table.component.html',
   host: {
     class: 'flex h-full',
