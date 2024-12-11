@@ -11,7 +11,6 @@ interface Person {
 
 @Component({
   selector: 'app-table',
-  standalone: true,
   imports: [TableModule, SkeletonModule, NgStyle],
   templateUrl: './table.component.html',
   host: {
